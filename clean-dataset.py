@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 def clean_anime_data(file_path):
     # Load the dataset
@@ -42,8 +43,12 @@ def clean_anime_data(file_path):
     # Drop columns with excessive missing values, except for 'main_picture'
     anime_data.drop(columns=['background', 'trailer_url'], inplace=True)
 
-    # Save the cleaned dataset
-    cleaned_file_path = file_path.replace('.csv', '_cleaned.csv')
+    # Ensure the /data directory exists
+    os.makedirs('/data', exist_ok=True)
+    # Generate the cleaned file path
+    cleaned_file_path = os.path.join('/data', file_path.replace('.csv', '_cleaned.csv').split('/')[-1])
+
+    # Save the cleaned file
     anime_data.to_csv(cleaned_file_path, index=False)
 
     return cleaned_file_path
