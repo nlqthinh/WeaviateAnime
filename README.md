@@ -32,7 +32,7 @@ pip install weaviate-client pandas
 Use Docker Compose to spin up a Weaviate instance:
 
 ```bash
-docker-compose up
+docker-compose up -d
 ```
 
 This will start a local Weaviate server that will store and manage the anime data.
